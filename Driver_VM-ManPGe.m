@@ -1,7 +1,6 @@
 
 function [xopt, iter, comtime, fv, nD, sparsity, avar, fs] = driver(x0, A, mu, L, tol, maxiter, Ftol)
     % parameters for line search
-    %使用BB步长来近似参数t,会有更好的效果
     delta = 0.0001;
     gamma = 0.5;
     [m, n] = size(A);
@@ -95,7 +94,7 @@ function [xopt, fs, Ds] = solver(fhandle, gfhandle, fcalA, fcalAstar, fprox, fca
         [fx2, x2] = fhandle(x2);
         
         s2 = (1 + sqrt(1 + 4 * s1 * s1)) / 2;
-        zeta = (- (s1 - 1) / s2) * Rinv(x2, x1);%由于此时x2已经更新，Rinv(x2, x1)
+        zeta = (- (s1 - 1) / s2) * Rinv(x2, x1);%鐢变簬姝ゆ椂x2宸茬粡鏇存柊锛孯inv(x2, x1)
 
         iter = iter + 1;
         fs(iter + 1) = fx2;
